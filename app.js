@@ -59,7 +59,7 @@ const menu = [
     category: "Korea",
     price: 15.99,
     img:
-      "https://www.curiouscuisiniere.com/wp-content/uploads/2020/04/Jajangmyeon-Korean-Noodles-in-Black-Bean-Sauce5.1200H-720x540.jpg",
+    "https://www.curiouscuisiniere.com/wp-content/uploads/2020/04/Jajangmyeon-Korean-Noodles-in-Black-Bean-Sauce5.1200H-720x540.jpg",
     desc: `Black bean sauce noodle, serving with green onion `,
   },
   {
@@ -68,7 +68,7 @@ const menu = [
     category: "China",
     price: 12.99,
     img:
-      "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/F688C2F6-86EC-46C4-B9C7-A6BA01DF7437/Derivates/32E3E72A-F786-406D-AF7F-B30980A9AC6C.jpg",
+    "https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/F688C2F6-86EC-46C4-B9C7-A6BA01DF7437/Derivates/32E3E72A-F786-406D-AF7F-B30980A9AC6C.jpg",
     desc: `Hot pepper sauce noodle, serving with soy bean and onion`,
   },
   {
@@ -77,7 +77,7 @@ const menu = [
     category: "Japan",
     price: 3.99,
     img:
-      "https://www.justonecookbook.com/wp-content/uploads/2011/10/Dorayaki-New-500x400.jpg",
+    "https://www.justonecookbook.com/wp-content/uploads/2011/10/Dorayaki-New-500x400.jpg",
     desc: `Red bean paste dessert, serving with honey.`,
   },
 ];
@@ -101,46 +101,20 @@ function createBtn(name) {
   btnContainer.appendChild(newButton)
 }
 
-function list(elem) {
-  switch (elem.target.id) {
-    case 'All':
-      {
-        sectionDOM.innerHTML = ""
-        menu.forEach(data => {
-          createInfo(data)
-        });
-      }
-      break;
-    case 'Korea':
-      {
-        const koreaMenu = menu.filter(data => data.category == 'Korea')
-        sectionDOM.innerHTML = ""
-        koreaMenu.forEach(data => createInfo(data))
-      }
-      break;
-    case 'China':
-      {
-        const chinaMenu = menu.filter(data => data.category == 'China')
-        sectionDOM.innerHTML = ""
-        chinaMenu.forEach(data => createInfo(data))
-      }
-      break;
-    case 'Japan':
-      {
-        const japanMenu = menu.filter(data => data.category == 'Japan')
-        sectionDOM.innerHTML = ""
-        japanMenu.forEach(data => createInfo(data))
-      }
-      break;
-
-    default:
-      break;
-  }
-}
-
 menu.forEach(data => {
   createInfo(data)
 });
+
+function list(elem) {
+  sectionDOM.innerHTML = ""
+  if (elem.target.id === 'All') {
+    menu.forEach(data => createInfo(data));
+  } else {
+    const newMenu = menu.filter(data => data.category == elem.target.id)
+    newMenu.forEach(data => createInfo(data))
+  }
+}
+
 
 function createInfo(data) {
   const menuItemsDOM = document.createElement("div");
